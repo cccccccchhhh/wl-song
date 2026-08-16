@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Panduan Pemilihan Lagu — Kebaktian Pemuda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2B1A10;
+    --ink-panel:#3A2617;
+    --ink-panel-hi:#48301E;
+    --gold:#E3B778;
+    --gold-soft:#B0794A;
+    --rose:#C0553A;
+    --cream:#F5E9D8;
+    --cream-dim:#C9AE93;
+    --line:rgba(245,233,216,0.14);
+    --radius:14px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -5%, rgba(227,183,120,0.10), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(176,121,74,0.12), transparent 55%),
+      var(--ink);
+    color:var(--cream);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',serif;}
+  a{color:var(--gold);}
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    max-width:1180px;
+    margin:0 auto;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{grid-template-columns:1fr;}
+  }
+
+  /* ---------- sticky rail: the liturgical thread ---------- */
+  .rail{
+    position:sticky;
+    top:0;
+    align-self:start;
+    height:100vh;
+    padding:40px 18px 40px 28px;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  @media (max-width:860px){
+    .rail{
+      position:sticky;
+      height:auto;
+      flex-direction:row;
+      overflow-x:auto;
+      padding:14px 16px;
+      background:rgba(23,27,46,0.96);
+      backdrop-filter:blur(6px);
+      border-bottom:1px solid var(--line);
+      z-index:20;
+      gap:14px;
+    }
+  }
+  .rail-title{
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--cream-dim);
+    margin-bottom:22px;
+  }
+  @media (max-width:860px){ .rail-title{display:none;} }
+
+  .thread{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  @media (max-width:860px){ .thread{flex-direction:row; align-items:center;} }
+
+  .thread::before{
+    content:"";
+    position:absolute;
+    left:5px; top:8px; bottom:8px;
+    width:1px;
+    background:var(--line);
+  }
+  @media (max-width:860px){
+    .thread::before{ left:8px; right:8px; top:auto; bottom:auto; width:auto; height:1px; }
+  }
+
+  .rail-item{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:11px 0;
+    cursor:pointer;
+    text-decoration:none;
+    color:var(--cream-dim);
+    font-size:13px;
+    transition:color .25s ease;
+    white-space:nowrap;
+  }
+  .rail-item:hover{color:var(--cream);}
+  .rail-item .dot{
+    width:11px; height:11px; border-radius:50%;
+    background:var(--ink-panel);
+    border:1px solid var(--line);
+    flex:none;
+    transition:all .35s ease;
+    z-index:1;
+  }
+  .rail-item.done .dot{
+    background:var(--gold);
+    border-color:var(--gold);
+    box-shadow:0 0 10px 1px rgba(227,183,120,0.55);
+    animation:dotPop .4s ease;
+  }
+  @keyframes dotPop{
+    0%{transform:scale(0.6);}
+    60%{transform:scale(1.25);}
+    100%{transform:scale(1);}
+  }
+  .rail-item.done{color:var(--cream);}
+  .rail-progress{
+    margin-top:24px;
+    font-size:11px;
+    color:var(--cream-dim);
+    letter-spacing:.06em;
+  }
+  @media (max-width:860px){ .rail-progress{display:none;} }
+
+  /* ---------- main column ---------- */
+  main{padding:56px 28px 120px; max-width:720px;}
+  @media (max-width:860px){ main{padding:36px 20px 100px;} }
+
+  .hero{margin-bottom:64px; position:relative;}
+  .hero-swirl{
+    position:absolute;
+    top:-120px; right:-160px;
+    width:420px; height:420px;
+    border-radius:50%;
+    background:conic-gradient(from 0deg, rgba(227,183,120,0.16), rgba(192,85,58,0.10), rgba(176,121,74,0.14), rgba(227,183,120,0.16));
+    filter:blur(48px);
+    z-index:-1;
+    animation:swirl 22s linear infinite;
+    pointer-events:none;
+  }
+  @keyframes swirl{
+    from{transform:rotate(0deg) scale(1);}
+    50%{transform:rotate(180deg) scale(1.08);}
+    to{transform:rotate(360deg) scale(1);}
+  }
+  @keyframes fadeInUp{
+    from{opacity:0; transform:translateY(16px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .hero .eyebrow{animation:fadeInUp .7s ease both;}
+  .hero h1{animation:fadeInUp .7s ease .08s both;}
+  .hero p{animation:fadeInUp .7s ease .16s both;}
+  .hero .verse{animation:fadeInUp .7s ease .24s both;}
+
+  .hero .eyebrow{
+    font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:14px; font-family:'Inter',sans-serif; font-weight:600;
+  }
+  .hero h1{
+    font-size:clamp(32px,5vw,46px);
+    font-weight:600;
+    line-height:1.12;
+    margin:0 0 18px;
+  }
+  .hero h1 em{font-style:italic; color:var(--gold); font-weight:500;}
+  .hero p{color:var(--cream-dim); font-size:15.5px; max-width:52ch; margin:0;}
+  .hero .verse{
+    margin-top:26px;
+    padding-left:16px;
+    border-left:2px solid var(--gold-soft);
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:15px;
+    color:var(--cream-dim);
+  }
+
+  /* identity fields */
+  .identity{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    background:var(--ink-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+    margin-bottom:24px;
+  }
+  @media (max-width:560px){ .identity{grid-template-columns:1fr;} }
+  .field label{
+    display:block; font-size:12px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--cream-dim); margin-bottom:8px;
+  }
+  .field input, .field textarea{
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--line);
+    color:var(--cream);
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    padding:6px 2px 10px;
+    outline:none;
+    transition:border-color .25s ease;
+  }
+  .field input:focus, .field textarea:focus{border-color:var(--gold);}
+  .field input::placeholder, .field textarea::placeholder{color:rgba(201,174,147,0.45);}
+  .field input[type="date"]{color-scheme:dark;}
+
+  .tema-panel{
+    margin:0 0 24px;
+    padding:20px 22px 22px;
+    background:linear-gradient(135deg, rgba(227,183,120,0.10), rgba(176,121,74,0.06));
+    border:1px solid rgba(227,183,120,0.35);
+    border-radius:var(--radius);
+    animation:fadeInUp .5s ease both;
+  }
+  .tema-panel h3{
+    font-size:12px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--gold); font-family:'Inter',sans-serif; font-weight:600; margin:0 0 8px;
+  }
+  .tema-panel .tema-text{
+    font-family:'Fraunces',serif; font-size:21px; font-weight:600; color:var(--cream); margin:0;
+    line-height:1.35;
+  }
+  .tema-panel .tema-catatan{
+    font-size:13.5px; color:var(--cream-dim); margin:10px 0 0;
+  }
+
+  .lagu5-tema-tag{
+    display:none;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:22px;
+    padding:12px 16px;
+    background:rgba(227,183,120,0.08);
+    border:1px solid rgba(227,183,120,0.3);
+    border-radius:10px;
+    font-size:13.5px;
+    color:var(--cream);
+    animation:fadeInUp .5s ease both;
+  }
+  .lagu5-tema-tag.show{display:flex;}
+  .lagu5-tema-tag strong{color:var(--gold); font-weight:600;}
+
+  .used-songs-panel{
+    margin:0 0 40px;
+    padding:18px 22px 20px;
+    background:rgba(181,105,122,0.08);
+    border:1px solid rgba(181,105,122,0.35);
+    border-radius:var(--radius);
+  }
+  .used-songs-panel h3{
+    font-size:12px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--rose); font-family:'Inter',sans-serif; font-weight:600; margin:0 0 4px;
+  }
+  .used-songs-panel .hint{font-size:13px; color:var(--cream-dim); margin:0 0 12px;}
+  .used-songs-panel .examples span{border-color:rgba(181,105,122,0.4); color:var(--cream);}
+
+  .dup-warning{
+    display:none;
+    margin-top:10px;
+    font-size:12.5px;
+    color:var(--rose);
+    font-family:'Inter',sans-serif;
+  }
+  .dup-warning.show{display:block; animation:shake .4s ease;}
+  @keyframes shake{
+    0%,100%{transform:translateX(0);}
+    25%{transform:translateX(-4px);}
+    75%{transform:translateX(4px);}
+  }
+  .answer-box.has-dup input{border-color:var(--rose);}
+  .answer-box.has-dup{animation:pulseDup .5s ease;}
+  @keyframes pulseDup{
+    0%{box-shadow:0 0 0 0 rgba(192,85,58,0.35);}
+    100%{box-shadow:0 0 0 8px rgba(192,85,58,0);}
+  }
+
+  /* movement panels */
+  .movement{
+    padding:36px 0;
+    border-top:1px solid var(--line);
+    scroll-margin-top:100px;
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .movement.revealed{opacity:1; transform:translateY(0);}
+  .movement:first-of-type{border-top:1px solid var(--line);}
+  .m-eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; margin-bottom:10px;
+  }
+  .m-eyebrow .num{
+    font-family:'Fraunces',serif; font-style:italic; color:var(--rose); font-size:13px;
+  }
+  .optional-tag{
+    font-size:10.5px; text-transform:none; letter-spacing:0; font-weight:500;
+    color:var(--cream-dim); background:rgba(237,232,220,0.08);
+    padding:2px 8px; border-radius:20px; margin-left:2px;
+  }
+  .movement h2{font-size:23px; font-weight:600; margin:0 0 14px; line-height:1.3;}
+
+  .why{
+    display:grid; grid-template-columns:1fr 1fr; gap:22px;
+    margin-bottom:22px;
+  }
+  @media (max-width:640px){ .why{grid-template-columns:1fr;} }
+  .why h3{
+    font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    font-family:'Inter',sans-serif; font-weight:600; color:var(--cream-dim); margin:0 0 8px;
+  }
+  .why p{font-size:14px; color:var(--cream-dim); margin:0; line-height:1.65;}
+
+  .examples{
+    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;
+  }
+  .examples span{
+    font-size:12.5px;
+    padding:5px 12px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    color:var(--cream-dim);
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    transition:transform .2s ease, border-color .2s ease, color .2s ease;
+  }
+  .examples span:hover{
+    transform:translateY(-2px);
+    border-color:var(--gold-soft);
+    color:var(--cream);
+  }
+  .examples-label{
+    font-size:11px; color:var(--cream-dim); text-transform:uppercase; letter-spacing:.08em;
+    width:100%; margin-bottom:2px; font-family:'Inter',sans-serif;
+  }
+
+  .answer-box{
+    background:var(--ink-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    transition:box-shadow .3s ease, border-color .3s ease;
+  }
+  .answer-box:focus-within{
+    border-color:var(--gold-soft);
+    box-shadow:0 0 0 4px rgba(227,183,120,0.08);
+  }
+  .answer-box label{
+    display:block; font-size:13px; color:var(--gold); font-weight:600; margin-bottom:10px;
+  }
+  .answer-box input, .answer-box textarea{
+    width:100%; background:transparent; border:none; outline:none;
+    font-family:'Fraunces',serif; font-size:19px; color:var(--cream);
+    border-bottom:1px solid var(--line); padding:6px 2px 12px;
+    transition:border-color .25s ease;
+    resize:none;
+  }
+  .answer-box input:focus, .answer-box textarea:focus{border-color:var(--gold);}
+  .answer-box input::placeholder, .answer-box textarea::placeholder{
+    color:rgba(201,174,147,0.4); font-style:italic;
+  }
+  .note-row{margin-top:14px;}
+  .note-row label{color:var(--cream-dim); font-weight:500; font-size:12px;}
+  .note-row textarea{font-family:'Inter',sans-serif; font-size:13.5px; color:var(--cream-dim);}
+
+  /* submit */
+  .submit-panel{
+    margin-top:20px;
+    padding-top:40px;
+    border-top:1px solid var(--line);
+    text-align:center;
+  }
+  .submit-panel p{color:var(--cream-dim); font-size:13.5px; margin-bottom:22px;}
+  button.submit-btn{
+    background:var(--gold);
+    color:var(--ink);
+    border:none;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    padding:15px 38px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  button.submit-btn:hover{transform:translateY(-1px); box-shadow:0 8px 22px -6px rgba(227,183,120,0.55);}
+  button.submit-btn:disabled{opacity:.5; cursor:not-allowed; transform:none; box-shadow:none;}
+  .status-msg{
+    margin-top:16px; font-size:13.5px; min-height:18px;
+  }
+  .status-msg.ok{color:#A9C08B;}
+  .status-msg.err{color:var(--rose);}
+
+  .footnote{
+    text-align:center; margin-top:30px; font-size:12px; color:rgba(201,174,147,0.5);
+  }
+
+  ::selection{background:var(--gold); color:var(--ink);}
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- sticky liturgical thread -->
+  <nav class="rail" aria-label="Progres pemilihan lagu">
+    <div class="rail-title">Alur Ibadah</div>
+    <div class="thread" id="thread">
+      <a href="#lagu1" class="rail-item" data-target="lagu1"><span class="dot"></span>Pengagungan</a>
+      <a href="#lagu2" class="rail-item" data-target="lagu2"><span class="dot"></span>Pujian Jemaat</a>
+      <a href="#lagu3" class="rail-item" data-target="lagu3"><span class="dot"></span>Pujian Lanjutan</a>
+      <a href="#lagu4" class="rail-item" data-target="lagu4"><span class="dot"></span>Persiapan Doa</a>
+      <a href="#lagu5" class="rail-item" data-target="lagu5"><span class="dot"></span>Firman Tuhan</a>
+      <a href="#lagu6" class="rail-item" data-target="lagu6"><span class="dot"></span>Persembahan</a>
+      <a href="#lagu7" class="rail-item" data-target="lagu7"><span class="dot"></span>Penutup</a>
+    </div>
+    <div class="rail-progress" id="railProgress">0 / 7 gerakan terisi</div>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <div class="hero-swirl" aria-hidden="true"></div>
+      <div class="eyebrow">Panduan WL · Kebaktian Pemuda</div>
+      <h1>Sebelum memilih lagu,<br><em>pahami dulu perannya.</em></h1>
+      <p>Ibadah kita mengikuti tujuh gerakan, dari panggilan Allah sampai pengutusan jemaat. Tiap lagu punya tempatnya sendiri dalam dialog itu. Isi keputusanmu di tiap bagian — begitu selesai, langsung masuk ke spreadsheet tim.</p>
+      <div class="verse">Ibadah adalah dialog perjanjian. Allah menyatakan diri-Nya terlebih dahulu, umat merespons dengan iman dan ketaatan.</div>
+    </div>
+
+    <form id="wlForm">
+      <div class="identity">
+        <div class="field">
+          <label for="nama">Nama WL</label>
+          <input type="text" id="nama" name="nama" placeholder="Nama kamu" required />
+        </div>
+        <div class="field">
+          <label for="minggu">Tanggal Pelayanan</label>
+          <input type="date" id="minggu" name="minggu" required />
+        </div>
+      </div>
+
+      <div class="tema-panel" id="temaPanel" style="display:none;">
+        <h3 id="temaPanelTitle">Tema Pelayanan</h3>
+        <p class="tema-text" id="temaText"></p>
+        <p class="tema-catatan" id="temaCatatan" style="display:none;"></p>
+      </div>
+
+      <div class="used-songs-panel" id="usedSongsPanel" style="display:none;">
+        <h3>Lagu yang sudah dipakai bulan ini</h3>
+        <p class="hint">Pilih lagu di luar daftar ini — satu lagu cuma boleh muncul sekali dalam sebulan.</p>
+        <div class="examples" id="usedSongsChips"></div>
+      </div>
+
+      <!-- LAGU 1 -->
+      <section class="movement" id="lagu1">
+        <div class="m-eyebrow"><span class="num">Gerakan I</span> Panggilan Beribadah</div>
+        <h2>Lagu 1 — Pengagungan</h2>
+        <div class="why">
+          <div>
+            <h3>Kenapa di sini</h3>
+            <p>Ibadah tidak dimulai dari kebutuhan manusia, tapi dari inisiatif dan anugerah Allah. Lagu ini membuka dengan mengarahkan fokus jemaat kepada Allah yang kudus, besar, dan berdaulat.</p>
+          </div>
+          <div>
+            <h3>Yang mau dicapai</h3>
+            <p>Menyadarkan jemaat bahwa mereka hadir bukan karena kelayakan, tapi anugerah — sekaligus membentuk sikap hormat dan takut akan Tuhan sejak lagu pertama dinyanyikan.</p>
+          </div>
+        </div>
+        <div class="examples">
+          <span class="examples-label">Contoh dari daftar tim</span>
+          <span>Yesus Kami Puja</span><span>Oleh Kuasa DarahMu</span><span>Sgala Pujian</span>
+        </div>
+        <div class="answer-box" id="lagu1_box">
+          <label for="lagu1_answer">Lagu 1 kamu apa?</label>
+          <input type="text" id="lagu1_answer" name="lagu1" placeholder="Tulis judul lagu pilihanmu" required />
+          <div class="dup-warning" id="lagu1_warning">Lagu ini sudah dipakai bulan ini.</div>
+        </div>
+      </section>
+
+      <!-- LAGU 2 -->
+      <section class="movement" id="lagu2">
+        <div class="m-eyebrow"><span class="num">Gerakan II</span> Respons Jemaat</div>
+        <h2>Lagu 2 — Pujian Jemaat</h2>
+        <div class="why">
+          <div>
+            <h3>Kenapa di sini</h3>
+            <p>Setelah dipanggil Allah, jemaat merespons dengan pujian atas kemuliaan dan karya-Nya. Ini jawaban iman, bukan sekadar usaha membangun suasana.</p>
+          </div>
+          <div>
+            <h3>Yang mau dicapai</h3>
+            <p>Menyatakan kebesaran dan perbuatan Tuhan sebagai ucapan syukur, sambil mengajak jemaat berpartisipasi aktif sebagai tubuh Kristus secara komunal.</p>
+          </div>
+        </div>
+        <div class="examples">
+          <span class="examples-label">Contoh dari daftar tim</span>
+          <span>Ku Kan Terbang</span><span>Pilihanku</span><span>Ku Bri yang Terbaik</span>
+        </div>
+        <div class="answer-box" id="lagu2_box">
+          <label for="lagu2_answer">Lagu 2 kamu apa?</label>
+          <input type="text" id="lagu2_answer" name="lagu2" placeholder="Tulis judul lagu pilihanmu" required />
+          <div class="dup-warning" id="lagu2_warning">Lagu ini sudah dipakai bulan ini.</div>
+        </div>
+      </section>
+
+      <!-- LAGU 3 -->
+      <section class="movement" id="lagu3">
+        <div class="m-eyebrow"><span class="num">Gerakan III</span> Pendalaman <span class="optional-tag">Opsional</span></div>
+        <h2>Lagu 3 — Pujian Lanjutan</h2>
+        <div class="why">
+          <div>
+            <h3>Kenapa di sini</h3>
+            <p>Kalau dipakai, ini memperdalam respons jemaat yang sudah dibuka di Lagu 2 — momentum belum berhenti, jadi tempo idealnya lebih cepat dari lagu praise pertama.</p>
+          </div>
+          <div>
+            <h3>Yang mau dicapai</h3>
+            <p>Memberi ruang tambahan bagi jemaat untuk terus merespons sebelum ibadah masuk ke momen doa syafaat yang lebih tenang.</p>
+          </div>
+        </div>
+        <div class="answer-box" id="lagu3_box">
+          <label for="lagu3_answer">Lagu 3 kamu apa? (boleh dikosongkan)</label>
+          <input type="text" id="lagu3_answer" name="lagu3" placeholder="Opsional — kosongkan jika tidak dipakai" />
+        </div>
+      </section>
+
+      <!-- LAGU 4 -->
+      <section class="movement" id="lagu4">
+        <div class="m-eyebrow"><span class="num">Gerakan IV</span> Berserah</div>
+        <h2>Lagu 4 — Persiapan Doa Syafaat</h2>
+        <div class="why">
+          <div>
+            <h3>Kenapa di sini</h3>
+            <p>Jemaat datang kepada Allah dengan ketergantungan penuh dalam doa. Lagu ini jadi jembatan dari pujian menuju sikap hati yang tunduk.</p>
+          </div>
+          <div>
+            <h3>Yang mau dicapai</h3>
+            <p>Mengarahkan hati untuk tunduk dan berserah pada kehendak Tuhan, menyatakan kepercayaan atas kedaulatan dan rencana-Nya sebelum masuk doa syafaat.</p>
+          </div>
+        </div>
+        <div class="examples">
+          <span class="examples-label">Contoh dari daftar tim</span>
+          <span>Walaupun Gunung Tak Berpindah</span><span>Sujud di AltarNya</span><span>Di Setiap Langkahku – Kebesaran-Mu</span>
+        </div>
+        <div class="answer-box" id="lagu4_box">
+          <label for="lagu4_answer">Lagu 4 kamu apa?</label>
+          <input type="text" id="lagu4_answer" name="lagu4" placeholder="Tulis judul lagu pilihanmu" required />
+          <div class="dup-warning" id="lagu4_warning">Lagu ini sudah dipakai bulan ini.</div>
+        </div>
+      </section>
+
+      <!-- LAGU 5 -->
+      <section class="movement" id="lagu5">
+        <div class="m-eyebrow"><span class="num">Gerakan V</span> Ketundukan</div>
+        <h2>Lagu 5 — Firman Tuhan</h2>
+        <div class="lagu5-tema-tag" id="lagu5TemaTag">
+          <span>🍫</span>
+          <span><strong>Tema pelayanan ini:</strong> <span id="lagu5TemaValue"></span> — usahakan Lagu 5 nyambung ke tema ini.</span>
+        </div>
+        <div class="why">
+          <div>
+            <h3>Kenapa di sini</h3>
+            <p>Ditempatkan tepat sebelum firman disampaikan, lagu ini menyiapkan hati jemaat untuk menerima apa yang akan diucapkan pembicara.</p>
+          </div>
+          <div>
+            <h3>Yang mau dicapai</h3>
+            <p>Menyiapkan hati untuk tunduk terhadap firman Tuhan — mau ditegur, mau diubahkan, bukan sekadar mendengarkan.</p>
+          </div>
+        </div>
+        <div class="examples">
+          <span class="examples-label">Contoh dari daftar tim</span>
+          <span>Bejana-Mu</span><span>Terhubung</span><span>Kuperlu Kau Tuhan</span>
+        </div>
+        <div class="answer-box" id="lagu5_box">
+          <label for="lagu5_answer">Lagu 5 kamu apa?</label>
+          <input type="text" id="lagu5_answer" name="lagu5" placeholder="Tulis judul lagu pilihanmu" required />
+          <div class="dup-warning" id="lagu5_warning">Lagu ini sudah dipakai bulan ini.</div>
+        </div>
+      </section>
+
+      <!-- LAGU 6 -->
+      <section class="movement" id="lagu6">
+        <div class="m-eyebrow"><span class="num">Gerakan VI</span> Ucapan Syukur</div>
+        <h2>Lagu 6 — Persembahan</h2>
+        <div class="why">
+          <div>
+            <h3>Kenapa di sini</h3>
+            <p>Setelah firman disampaikan, jemaat merespons dengan memberi — persembahan sebagai ucapan syukur atas apa yang baru saja diterima.</p>
+          </div>
+          <div>
+            <h3>Yang mau dicapai</h3>
+            <p>Mengiringi momen memberi dengan lagu yang menegaskan kesanggupan dan anugerah Allah yang mempesona.</p>
+          </div>
+        </div>
+        <div class="examples">
+          <span class="examples-label">Contoh dari daftar tim</span>
+          <span>Allah Sanggup</span><span>AnugerahMu Mempesona</span><span>Kuteringat</span>
+        </div>
+        <div class="answer-box" id="lagu6_box">
+          <label for="lagu6_answer">Lagu 6 kamu apa?</label>
+          <input type="text" id="lagu6_answer" name="lagu6" placeholder="Tulis judul lagu pilihanmu" required />
+          <div class="dup-warning" id="lagu6_warning">Lagu ini sudah dipakai bulan ini.</div>
+        </div>
+      </section>
+
+      <!-- LAGU 7 -->
+      <section class="movement" id="lagu7">
+        <div class="m-eyebrow"><span class="num">Gerakan VII</span> Pengutusan</div>
+        <h2>Lagu 7 — Penutup (Doxology & Pengutusan)</h2>
+        <div class="why">
+          <div>
+            <h3>Kenapa di sini</h3>
+            <p>Ibadah diakhiri dengan memuliakan Allah Tritunggal dan mengutus jemaat kembali ke dunia sebagai saksi Kristus.</p>
+          </div>
+          <div>
+            <h3>Yang mau dicapai</h3>
+            <p>Menegaskan bahwa tujuan utama ibadah adalah kemuliaan Tuhan. Kalau lagunya bisa turut mengantar semangat pengutusan, itu nilai tambah.</p>
+          </div>
+        </div>
+        <div class="examples">
+          <span class="examples-label">Contoh dari daftar tim</span>
+          <span>Be Glorified</span><span>Ku Nyanyi Haleluya</span><span>Kau Rajaku</span>
+        </div>
+        <div class="answer-box" id="lagu7_box">
+          <label for="lagu7_answer">Lagu 7 kamu apa?</label>
+          <input type="text" id="lagu7_answer" name="lagu7" placeholder="Tulis judul lagu pilihanmu" required />
+          <div class="dup-warning" id="lagu7_warning">Lagu ini sudah dipakai bulan ini.</div>
+          <div class="note-row">
+            <label for="catatan">Catatan tambahan (opsional)</label>
+            <textarea id="catatan" name="catatan" rows="2" placeholder="Ada pertimbangan lain yang mau disampaikan ke tim?"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <div class="submit-panel">
+        <p>Setelah dikirim, pilihanmu langsung masuk ke spreadsheet tim WL.</p>
+        <button type="submit" class="submit-btn" id="submitBtn">Kirim Pilihan Lagu</button>
+        <div class="status-msg" id="statusMsg"></div>
+      </div>
+    </form>
+
+    <div class="footnote">Panduan disusun dari alur liturgi Kebaktian Pemuda — dialog panggilan dan respons.</div>
+  </main>
+</div>
+
+<script>
+  // ====== ISI DENGAN URL WEB APP GOOGLE APPS SCRIPT KAMU ======
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzm_a5D-3BmwUb3tSX562_HuvNHzTI1ih6JuUt81RoqYt3sq5AETG1xGiC2zMS0mCWf/exec";
+  // ==============================================================
+
+  // ---------- validasi duplikat lagu per bulan ----------
+  let usedSongsThisMonth = new Set(); // lowercase, trimmed
+  const laguFieldIds = ['lagu1_answer','lagu2_answer','lagu3_answer','lagu4_answer','lagu5_answer','lagu6_answer','lagu7_answer'];
+  const usedSongsPanel = document.getElementById('usedSongsPanel');
+  const usedSongsChips = document.getElementById('usedSongsChips');
+  const mingguInput = document.getElementById('minggu');
+  const temaPanel = document.getElementById('temaPanel');
+  const temaPanelTitle = document.getElementById('temaPanelTitle');
+  const temaText = document.getElementById('temaText');
+  const temaCatatan = document.getElementById('temaCatatan');
+  const lagu5TemaTag = document.getElementById('lagu5TemaTag');
+  const lagu5TemaValue = document.getElementById('lagu5TemaValue');
+
+  function normalize(str){
+    return (str || "")
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, ' '); // rapikan spasi ganda/tab jadi satu spasi
+  }
+
+  async function loadUsedSongsForMonth(){
+    if(!mingguInput.value) return;
+    if(SCRIPT_URL.includes("PASTE_GOOGLE_APPS_SCRIPT")){ return; }
+
+    usedSongsPanel.style.display = 'none';
+    temaPanel.style.display = 'none';
+    lagu5TemaTag.classList.remove('show');
+
+    try{
+      const res = await fetch(SCRIPT_URL + "?date=" + encodeURIComponent(mingguInput.value));
+      const json = await res.json();
+      const songs = (json && json.songs) ? json.songs : [];
+      const tema = (json && json.tema) ? json.tema : null;
+
+      usedSongsThisMonth = new Set(songs.map(normalize));
+
+      if(songs.length){
+        usedSongsChips.innerHTML = songs.map(s => "<span>" + escapeHtml(s) + "</span>").join("");
+        usedSongsPanel.style.display = 'block';
+      }
+
+      if(tema && tema.tema){
+        temaText.textContent = tema.tema;
+        if(tema.catatan){
+          temaCatatan.textContent = tema.catatan;
+          temaCatatan.style.display = 'block';
+        }else{
+          temaCatatan.style.display = 'none';
+        }
+        temaPanel.style.display = 'block';
+
+        lagu5TemaValue.textContent = tema.tema;
+        lagu5TemaTag.classList.add('show');
+      }else{
+        temaPanelTitle.textContent = "Tema Pelayanan";
+        temaText.textContent = "Tema untuk tanggal ini belum diisi tim — koordinasi ke PIC tema ya.";
+        temaCatatan.style.display = 'none';
+        temaPanel.style.display = 'block';
+      }
+    }catch(err){
+      // gagal ambil data lama bukan blocker fatal — WL tetap bisa isi form
+      usedSongsThisMonth = new Set();
+    }
+
+    laguFieldIds.forEach(checkDuplicate);
+  }
+
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function checkDuplicate(fieldId){
+    const el = document.getElementById(fieldId);
+    const box = document.getElementById(fieldId.replace('_answer', '_box'));
+    const warning = document.getElementById(fieldId.replace('_answer', '_warning'));
+    if(!el || !box || !warning) return false;
+
+    const value = normalize(el.value);
+    if(!value){
+      box.classList.remove('has-dup');
+      warning.classList.remove('show');
+      return false;
+    }
+
+    // duplikat vs riwayat bulan ini
+    let isDup = usedSongsThisMonth.has(value);
+
+    // duplikat vs field lain di form yang sama
+    if(!isDup){
+      isDup = laguFieldIds.some(otherId => {
+        if(otherId === fieldId) return false;
+        const otherEl = document.getElementById(otherId);
+        return otherEl && normalize(otherEl.value) === value;
+      });
+    }
+
+    box.classList.toggle('has-dup', isDup);
+    warning.classList.toggle('show', isDup);
+    return isDup;
+  }
+
+  mingguInput.addEventListener('change', loadUsedSongsForMonth);
+  laguFieldIds.forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('input', () => {
+      laguFieldIds.forEach(checkDuplicate); // re-check semua, karena antar-field saling pengaruh
+    });
+  });
+
+  const railItems = document.querySelectorAll('.rail-item');
+  const railProgress = document.getElementById('railProgress');
+  const requiredFields = ['lagu1_answer','lagu2_answer','lagu4_answer','lagu5_answer','lagu6_answer','lagu7_answer'];
+  const fieldToSection = {
+    lagu1_answer:'lagu1', lagu2_answer:'lagu2', lagu3_answer:'lagu3',
+    lagu4_answer:'lagu4', lagu5_answer:'lagu5', lagu6_answer:'lagu6', lagu7_answer:'lagu7'
+  };
+
+  function updateProgress(){
+    let filled = 0;
+    Object.entries(fieldToSection).forEach(([fieldId, sectionId])=>{
+      const el = document.getElementById(fieldId);
+      const railItem = document.querySelector('.rail-item[data-target="'+sectionId+'"]');
+      const isFilled = el && el.value.trim().length > 0;
+      if(isFilled){ railItem.classList.add('done'); filled++; }
+      else{ railItem.classList.remove('done'); }
+    });
+    railProgress.textContent = filled + " / 7 gerakan terisi";
+  }
+
+  laguFieldIds.forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('input', updateProgress);
+  });
+  updateProgress();
+
+  // active section highlight on scroll + fade-in reveal
+  const sections = document.querySelectorAll('.movement');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('revealed');
+        railItems.forEach(i=>i.style.opacity = '0.55');
+        const active = document.querySelector('.rail-item[data-target="'+entry.target.id+'"]');
+        if(active) active.style.opacity = '1';
+      }
+    });
+  }, {rootMargin:"-40% 0px -50% 0px"});
+  sections.forEach(s=>observer.observe(s));
+
+  // reveal a bit earlier too, independent of the nav-highlight thresholds
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.08});
+  sections.forEach(s=>revealObserver.observe(s));
+
+  const form = document.getElementById('wlForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const statusMsg = document.getElementById('statusMsg');
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+
+    if(SCRIPT_URL.includes("PASTE_GOOGLE_APPS_SCRIPT")){
+      statusMsg.textContent = "Belum terhubung ke spreadsheet — tempel URL Apps Script di kode dulu (lihat README).";
+      statusMsg.className = "status-msg err";
+      return;
+    }
+
+    const hasDuplicate = laguFieldIds.map(checkDuplicate).some(Boolean);
+    if(hasDuplicate){
+      statusMsg.textContent = "Masih ada lagu yang duplikat bulan ini — cek yang ditandai merah di atas.";
+      statusMsg.className = "status-msg err";
+      document.querySelector('.answer-box.has-dup').scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+
+    const data = {
+      timestamp: new Date().toISOString(),
+      nama: document.getElementById('nama').value,
+      minggu: document.getElementById('minggu').value,
+      lagu1: document.getElementById('lagu1_answer').value,
+      lagu2: document.getElementById('lagu2_answer').value,
+      lagu3: document.getElementById('lagu3_answer').value,
+      lagu4: document.getElementById('lagu4_answer').value,
+      lagu5: document.getElementById('lagu5_answer').value,
+      lagu6: document.getElementById('lagu6_answer').value,
+      lagu7: document.getElementById('lagu7_answer').value,
+      catatan: document.getElementById('catatan').value
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Mengirim...";
+    statusMsg.textContent = "";
+    statusMsg.className = "status-msg";
+
+    try{
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(data)
+      });
+      statusMsg.textContent = "Terkirim! Pilihanmu sudah masuk ke spreadsheet tim.";
+      statusMsg.className = "status-msg ok";
+      submitBtn.textContent = "Terkirim ✓";
+    }catch(err){
+      statusMsg.textContent = "Gagal mengirim. Cek koneksi lalu coba lagi.";
+      statusMsg.className = "status-msg err";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Kirim Pilihan Lagu";
+    }
+  });
+</script>
+</body>
+</html>
